@@ -8,7 +8,7 @@ type User = {
 }
 // CRUD para Usuarios
 const userCrud = new CRUDOperations<User>()
-userCrud.create('1', { id: '1', name: 'Juan', email: 'juan@example.com' })
+userCrud.create({ id: '1', name: 'Juan', email: 'juan@example.com' })
 console.log(userCrud.read('1'))
 </script>
 

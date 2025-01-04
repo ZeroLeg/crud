@@ -1,39 +1,35 @@
 interface ICRUD<T> {
-  create(key: string, value: T): string
-  read(key: string): T | string
-  update(key: string, value: T): string
-  delete(key: string): string
+  create(value: T): string
+  read(id: string): T | string
+  update(id: string, value: T): string
+  delete(id: string): string
 }
 
 class CRUDOperations<T> implements ICRUD<T> {
   private data: Record<string, T> = {}
 
-  create(key: string, value: T): string {
-    if (this.data[key]) {
-      return `Error: El elemento con clave "${key}" ya existe.`
-    }
-    this.data[key] = value
-    return `Elemento con clave "${key}" creado exitosamente.`
+  create(value: T): string {
+    return `Elemento con clave "${value}" creado exitosamente.`
   }
 
-  read(key: string): T | string {
-    return this.data[key] || `Error: El elemento con clave "${key}" no existe.`
+  read(id: string): T | string {
+    return this.data[id] || `Error: El elemento con clave "${id}" no existe.`
   }
 
-  update(key: string, value: T): string {
-    if (!this.data[key]) {
-      return `Error: El elemento con clave "${key}" no existe.`
+  update(id: string, value: T): string {
+    if (!this.data[id]) {
+      return `Error: El elemento con clave "${id}" no existe.`
     }
-    this.data[key] = value
-    return `Elemento con clave "${key}" actualizado exitosamente.`
+    this.data[id] = value
+    return `Elemento con clave "${id}" actualizado exitosamente.`
   }
 
-  delete(key: string): string {
-    if (!this.data[key]) {
-      return `Error: El elemento con clave "${key}" no existe.`
+  delete(id: string): string {
+    if (!this.data[id]) {
+      return `Error: El elemento con clave "${id}" no existe.`
     }
-    delete this.data[key]
-    return `Elemento con clave "${key}" eliminado exitosamente.`
+    delete this.data[id]
+    return `Elemento con clave "${id}" eliminado exitosamente.`
   }
 }
 
